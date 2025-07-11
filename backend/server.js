@@ -1,11 +1,26 @@
 const express = require("express");
-const path = require("path");
-
+const cookieParser = require("cookie-parser");
+const cors = require("cors");
 const app = express();
+
+const path = require("path");
+const { logger } = require("./middleware/logger");
+const errorHandler = require("./middleware/errorHandler");
+const corsOptions = require("./config/corsOptions");
+
+app.use(logger);
+
+app.use(cors(corsOptions));
+
 const PORT = process.env.PORT || 3500;
 
+//let app receive and parse json data
+app.use(express.json());
+
+app.use(cookieParser());
+
 //use to find the static files such as html, css, img
-app.use("/", express.static(path.join(__dirname, "/public")));
+app.use("/", express.static(path.join(__dirname, "public")));
 
 app.use("/", require("./routes/root"));
 
@@ -19,6 +34,8 @@ app.all("/{*any}", (req, res) => {
     res.type("txt").send("404 not found");
   }
 });
+
+app.use(errorHandler);
 
 app.listen(PORT, () => {
   console.log(`Server running on PORT ${PORT}`);
