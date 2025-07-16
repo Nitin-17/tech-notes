@@ -4,7 +4,7 @@ import { Navigate, useLocation } from "react-router-dom";
 export default function RequireAuth({ children }) {
   //const { user } = useAuth(); // null/undefined when logged‑out
   const location = useLocation(); // for redirecting back after login
-  const user = false;
+  const user = true;
 
   if (!user) {
     return <Navigate to="/login" replace state={{ from: location }} />;
