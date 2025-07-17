@@ -46,7 +46,7 @@ export const notesApiSlice = apiSlice.injectEndpoints({
     updateNote: builder.mutation({
       query: (initialNote) => ({
         url: "/notes",
-        method: "PATCH",
+        method: "PUT",
         body: {
           ...initialNote,
         },

@@ -7,6 +7,11 @@ import WelcomePage from "./features/auth/Welcome";
 import NotesList from "./features/notes/NotesList";
 import UsersList from "./features/users/UsersList";
 import RequireAuth from "./features/auth/requireAuth";
+import EditUser from "./features/users/EditUser";
+import NewUserForm from "./features/users/NewUserForm";
+import EditNote from "./features/notes/EditNote";
+import NewNote from "./features/notes/NewNote";
+import Prefetch from "./features/auth/Prefetch";
 import "./App.css";
 
 const router = createBrowserRouter([
@@ -22,13 +27,29 @@ const router = createBrowserRouter([
         path: "dashboard",
         element: (
           <RequireAuth>
-            <Outlet />
+            <Prefetch>
+              <Outlet />
+            </Prefetch>
           </RequireAuth>
         ),
         children: [
           { index: true, element: <WelcomePage /> },
-          { path: "notes", element: <NotesList /> },
-          { path: "users", element: <UsersList /> },
+          {
+            path: "notes",
+            children: [
+              { index: true, element: <NotesList /> },
+              { path: ":id", element: <EditNote /> },
+              { path: "new", element: <NewNote /> },
+            ],
+          },
+          {
+            path: "users",
+            children: [
+              { index: true, element: <UsersList /> },
+              { path: ":id", element: <EditUser /> },
+              { path: "new", element: <NewUserForm /> },
+            ],
+          },
         ],
       },
     ],

@@ -9,7 +9,7 @@ router
 
 router
   .route("/:id")
-  .patch(notesController.updateNote)
+  .put(notesController.updateNote)
   .delete(notesController.deleteNote);
 
 module.exports = router;

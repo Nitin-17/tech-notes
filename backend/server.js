@@ -2,6 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
+const corsOptions = require("./config/corsOptions");
 const path = require("path");
 const connectDatabase = require("./config/dbConnect");
 const mongoose = require("mongoose");
@@ -9,13 +10,20 @@ const app = express();
 
 const { logger, logEvents } = require("./middleware/logger");
 const errorHandler = require("./middleware/errorHandler");
-const corsOptions = require("./config/corsOptions");
 
 connectDatabase();
 
-app.use(logger);
-
 app.use(cors(corsOptions));
+
+app.use(logger);
+app.use(function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  next();
+});
 
 const PORT = process.env.PORT || 3500;
 console.log(process.env.NODE_ENV);

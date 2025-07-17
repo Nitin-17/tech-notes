@@ -37,10 +37,11 @@ const CallToAction = () => {
 
 function Landing() {
   return (
-    <div className="font-sans antialiased text-gray-900">
-      <HeroSection />
-
-      <CallToAction />
+    <div className="font-sans antialiased text-gray-900 **min-h-screen flex flex-col">
+      <div className="flex-grow">
+        <HeroSection />
+        <CallToAction />
+      </div>
     </div>
   );
 }

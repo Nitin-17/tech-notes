@@ -64,6 +64,7 @@ const createNewUser = asyncHandler(async (req, res) => {
 // @router PATCH /users
 // @acess private
 const updateUser = asyncHandler(async (req, res) => {
+  console.log("Updating user:", req.params.id);
   const { id } = req.params;
   const { email, username, roles, active, password, bio } = req?.body;
 

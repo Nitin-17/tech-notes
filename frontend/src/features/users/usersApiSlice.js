@@ -14,8 +14,8 @@ export const usersApiSlice = apiSlice.injectEndpoints({
           return response.status === 200 && !result.isError;
         },
       }),
+      keepUnusedDataFor: 5,
       transformResponse: (responseData) => {
-        console.log("🚀 responseData from /users:", responseData);
         const loadedUsers = responseData?.map((user) => {
           user.id = user._id; //reassigned it because with userAdapter, the normalized data, it always look for id not _id
           return user;
@@ -43,8 +43,8 @@ export const usersApiSlice = apiSlice.injectEndpoints({
     }),
     updateUser: builder.mutation({
       query: (initialUserData) => ({
-        url: "/users",
-        method: "PATCH",
+        url: `/users/${initialUserData.id}`,
+        method: "PUT",
         body: {
           ...initialUserData,
         },
