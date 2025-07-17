@@ -17,8 +17,6 @@ const UsersList = () => {
     refetchOnMountOrArgChange: true,
   });
 
-  console.log("Returned data", users);
-
   if (isLoading) {
     return (
       <div className="flex justify-center items-center h-48">
