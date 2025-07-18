@@ -26,7 +26,6 @@ app.use(function (req, res, next) {
 });
 
 const PORT = process.env.PORT || 3500;
-console.log(process.env.NODE_ENV);
 
 //let app receive and parse json data
 app.use(express.json());
