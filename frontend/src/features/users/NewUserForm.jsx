@@ -10,8 +10,8 @@ import { FaSave } from "react-icons/fa";
 /* const usernameRegex = /^[a-zA-Z0-9_]{3,20}$/;
 const passwordRegex =
   /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?#&])[A-Za-z\d@$!%*?#&]{8,}$/; */
-const USER_REGEX = /^[A-Za-z]{3,20}$/;
-const PWD_REGEX = /^[A-Za-z0-9!@#$%]{4,12}$/;
+const USER_REGEX = /^[A-Za-z_ ]{3,20}$/;
+const PWD_REGEX = /^[A-Za-z0-9!@#$%]{4,20}$/;
 const EMAIL_REGEX = /^[\w.-]+@[\w.-]+\.\w{2,}$/;
 
 const validationSchema = Yup.object({

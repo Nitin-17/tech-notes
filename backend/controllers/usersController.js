@@ -119,6 +119,7 @@ const updateUser = asyncHandler(async (req, res) => {
 // @acess private
 const deleteUser = asyncHandler(async (req, res) => {
   const { id } = req.params;
+  console.log("id is ...", id);
 
   if (!id) {
     return res.status(400).json({ message: "User Id required" });

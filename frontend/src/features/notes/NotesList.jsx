@@ -1,5 +1,6 @@
 import { useGetNotesQuery } from "./notesApiSlice";
 import Note from "./Note";
+import { Link } from "react-router-dom";
 //import useAuth from "../../hooks/useAuth";
 //import useTitle from "../../hooks/useTitle";
 //import PulseLoader from "react-spinners/PulseLoader";
@@ -49,7 +50,15 @@ const NotesList = () => {
         : ids.filter((noteId) => entities[noteId].username === username);
 
     return (
-      <div className="overflow-x-auto p-4">
+      <div className="overflow-x-auto p-4 flex flex-col gap-4">
+        <div className="flex flex-row justify-end">
+          <Link
+            to="/dashboard/notes/new"
+            className="inline-block px-4 py-2 bg-[#1c7ed6]  hover:bg-[#1864ab]  text-white font-semibold rounded-lg shadow-md"
+          >
+            Add a New Note
+          </Link>
+        </div>
         <table className="min-w-full divide-y divide-gray-300 shadow-lg rounded-lg overflow-hidden bg-white">
           <thead className="bg-gray-100 text-gray-700 text-sm uppercase">
             <tr>

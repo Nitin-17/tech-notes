@@ -1,5 +1,5 @@
 import { FaPen } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useGetNotesQuery } from "./notesApiSlice";
 import { memo } from "react";
 
@@ -24,8 +24,6 @@ const Note = ({ noteId }) => {
     month: "short",
   });
 
-  const handleEdit = () => navigate(`/dashboard/notes/${noteId}`);
-
   return (
     <tr className="border-b border-gray-200 hover:bg-gray-50 text-sm">
       <td className="px-4 py-3 font-medium text-center">
@@ -44,12 +42,12 @@ const Note = ({ noteId }) => {
       </td>
 
       <td className="px-4 py-3 text-center">
-        <button
-          onClick={handleEdit}
+        <Link
+          to={`/dashboard/notes/${noteId}`}
           className="text-blue-600 hover:text-blue-800 transition duration-150"
         >
           <FaPen className="inline w-4 h-4" />
-        </button>
+        </Link>
       </td>
     </tr>
   );

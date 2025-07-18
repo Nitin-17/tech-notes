@@ -131,7 +131,7 @@ const deleteNote = asyncHandler(async (req, res) => {
 
   const result = await note.deleteOne();
 
-  const reply = `Note '${title}' with ID ${id} deleted`;
+  const reply = `Note with ID ${id} deleted`;
 
   res.json({ message: reply });
 });

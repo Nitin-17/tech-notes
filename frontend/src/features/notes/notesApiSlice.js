@@ -45,7 +45,7 @@ export const notesApiSlice = apiSlice.injectEndpoints({
     }),
     updateNote: builder.mutation({
       query: (initialNote) => ({
-        url: "/notes",
+        url: `/notes/${initialNote?.id}`,
         method: "PUT",
         body: {
           ...initialNote,
@@ -55,7 +55,7 @@ export const notesApiSlice = apiSlice.injectEndpoints({
     }),
     deleteNote: builder.mutation({
       query: ({ id }) => ({
-        url: `/notes`,
+        url: `/notes/${id}`,
         method: "DELETE",
         body: { id },
       }),

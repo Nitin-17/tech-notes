@@ -6,7 +6,7 @@ import { ROLES } from "../../config/roles";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 
-const USER_REGEX = /^[A-Za-z_ ]{3,20}$/;
+const USER_REGEX = /^[A-Za-z_ ]{3,30}$/;
 const PWD_REGEX = /^[A-Za-z0-9!@#$%]{4,12}$/;
 const EMAIL_REGEX = /^[\w.-]+@[\w.-]+\.\w{2,}$/;
 
@@ -44,7 +44,7 @@ const EditUserForm = ({ user }) => {
   };
 
   const handleDelete = async () => {
-    await deleteUser({ id: user.id });
+    await deleteUser({ id: user?.id });
   };
 
   const roleOptions = Object.values(ROLES).map((role) => (

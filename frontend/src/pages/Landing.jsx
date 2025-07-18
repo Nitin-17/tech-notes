@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const HeroSection = () => {
   return (
     <section className="bg-gradient-to-r from-gray-900 to-gray-700 text-white py-20 text-center">
@@ -10,9 +12,12 @@ const HeroSection = () => {
           Say goodbye to sticky notes. Centralize, assign, and manage your tech
           support notes with ease — all in one secure platform.
         </p>
-        <button className="bg-teal-500 hover:bg-teal-600 text-white font-bold py-3 px-8 rounded-full text-lg shadow-lg transform transition duration-300 hover:scale-105">
+        <Link
+          to="/login"
+          className="bg-teal-500 hover:bg-teal-600 text-white font-bold py-3 px-8 rounded-full text-lg shadow-lg transform transition duration-300 hover:scale-105"
+        >
           Launch Tech Notes
-        </button>
+        </Link>
       </div>
     </section>
   );
@@ -27,9 +32,12 @@ const CallToAction = () => {
           Improve note ownership, accountability, and collaboration with
           role-based access, automated logins, and clear status tracking.
         </p>
-        <button className="bg-white text-teal-600 font-bold py-3 px-8 rounded-full text-lg shadow-lg transform transition duration-300 hover:scale-105 hover:bg-gray-200">
+        <Link
+          to="/dashboard"
+          className="bg-white text-teal-600 font-bold py-3 px-8 rounded-full text-lg shadow-lg transform transition duration-300 hover:scale-105 hover:bg-gray-200"
+        >
           Start Managing Notes
-        </button>
+        </Link>
       </div>
     </section>
   );
