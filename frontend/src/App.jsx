@@ -13,11 +13,12 @@ import EditNote from "./features/notes/EditNote";
 import NewNote from "./features/notes/NewNote";
 import Prefetch from "./features/auth/Prefetch";
 import "./App.css";
+import ErrorPage from "./pages/Error";
 
 const router = createBrowserRouter([
   {
     element: <AppLayout />,
-    // errorElement:<Error/>
+    errorElement: <ErrorPage />,
     children: [
       { index: true, element: <Landing /> },
       { path: "/login", element: <Login /> },
