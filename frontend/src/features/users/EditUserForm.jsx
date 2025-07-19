@@ -24,7 +24,7 @@ const validationSchema = Yup.object({
   active: Yup.boolean(),
 });
 
-const EditUserForm = ({ user }) => {
+const EditUserForm = ({ users }) => {
   const navigate = useNavigate();
 
   const [updateUser, { isSuccess }] = useUpdateUserMutation();

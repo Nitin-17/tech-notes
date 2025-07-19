@@ -54,7 +54,6 @@ const EditNoteForm = ({ note, users }) => {
   const [userId, setUserId] = useState(
     note.user || (users && users.length > 0 ? users[0].id : "")
   );
-
   useEffect(() => {
     if (isSuccessUpdate || isSuccessDelete) {
       navigate("/dashboard/notes");

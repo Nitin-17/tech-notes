@@ -3,6 +3,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setCredentials } from "./authSlice";
 import { useLoginMutation } from "./authApiSlice";
+import usePersist from "../../hooks/usePersist";
 
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
@@ -24,6 +25,7 @@ const Login = () => {
   const errRef = useRef();
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [persist, setPersist] = usePersist();
 
   const [login, { isLoading, error: apiError }] = useLoginMutation(); // Renamed error to apiError
 
@@ -40,6 +42,8 @@ const Login = () => {
     email: "",
     password: "",
   };
+
+  const handleToggle = () => setPersist((prev) => !prev);
 
   const handleSubmit = async (values, { setSubmitting, setStatus }) => {
     try {
@@ -183,6 +187,22 @@ const Login = () => {
                     </>
                   )}
                 </button>
+              </div>
+
+              <div className="flex items-center">
+                <Field
+                  type="checkbox"
+                  id="persist"
+                  onChange={handleToggle}
+                  checked={persist}
+                  className="h-4 w-4 text-teal-600 focus:ring-teal-500 border-gray-300 rounded"
+                />
+                <label
+                  htmlFor="persist"
+                  className="ml-2 block text-gray-700 text-sm font-bold"
+                >
+                  Trust This Device
+                </label>
               </div>
             </Form>
           )}

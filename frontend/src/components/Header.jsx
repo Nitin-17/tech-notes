@@ -17,9 +17,11 @@ const Header = () => {
     useSendLogoutMutation();
 
   useEffect(() => {
+    console.log("Sending back");
+
     if (isSuccess) {
       console.log("Sending back");
-      navigate("/");
+      navigate("/login");
     }
   }, [isSuccess, navigate]);
 
@@ -64,12 +66,6 @@ const Header = () => {
               <button className="flex items-center gap-2 px-2.5 h-10 bg-[#f0f2f5] text-sm font-bold rounded-lg">
                 <FaUser />
                 Login
-              </button>
-            </Link>
-            <Link to="/signup">
-              <button className="flex items-center gap-2 px-2.5 h-10 bg-[#f0f2f5] text-sm font-bold rounded-lg">
-                <FaUserPlus />
-                Register
               </button>
             </Link>
           </div>

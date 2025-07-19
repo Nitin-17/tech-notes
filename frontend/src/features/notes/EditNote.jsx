@@ -1,21 +1,48 @@
-import React from "react";
 import { useParams } from "react-router-dom";
-import { selectNoteById } from "./notesApiSlice";
-import { selectAllUsers } from "../users/usersApiSlice";
-import EditNoteForm from "./EditNoteForm";
 import { useSelector } from "react-redux";
+import { useGetNotesQuery, selectNoteById } from "./notesApiSlice";
+import { useGetUsersQuery } from "../users/usersApiSlice";
+import EditNoteForm from "./EditNoteForm";
 
 const EditNote = () => {
   const { id } = useParams();
-  const note = useSelector((state) => selectNoteById(state, id));
-  const users = useSelector(selectAllUsers);
 
-  const content =
-    note && users ? (
-      <EditNoteForm note={note} users={users} />
-    ) : (
-      <p>Loading...</p>
-    );
+  // 🔸 Fetch notes and users
+  const {
+    data: notesData,
+    isLoading: isNotesLoading,
+    isSuccess: isNotesSuccess,
+    isError: isNotesError,
+    error: notesError,
+  } = useGetNotesQuery("notesList");
+
+  const {
+    data: usersData,
+    isLoading: isUsersLoading,
+    isSuccess: isUsersSuccess,
+    isError: isUsersError,
+    error: usersError,
+  } = useGetUsersQuery("usersList");
+
+  // 🔸 Select note only after notes are fetched
+  const note = useSelector((state) =>
+    isNotesSuccess ? selectNoteById(state, id) : undefined
+  );
+
+  let content;
+
+  if (isNotesLoading || isUsersLoading) {
+    content = <p>Loading...</p>;
+  } else if (isNotesError) {
+    content = <p>Error loading note: {notesError?.data?.message}</p>;
+  } else if (isUsersError) {
+    content = <p>Error loading users: {usersError?.data?.message}</p>;
+  } else if (!note) {
+    content = <p>Note not found.</p>;
+  } else {
+    const users = Object.values(usersData.entities);
+    content = <EditNoteForm note={note} users={users} />;
+  }
 
   return content;
 };

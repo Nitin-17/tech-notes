@@ -14,6 +14,7 @@ import NewNote from "./features/notes/NewNote";
 import Prefetch from "./features/auth/Prefetch";
 import "./App.css";
 import ErrorPage from "./pages/Error";
+import PersistLogin from "./features/auth/PersistLogin";
 
 const router = createBrowserRouter([
   {
@@ -27,11 +28,13 @@ const router = createBrowserRouter([
       {
         path: "dashboard",
         element: (
-          <RequireAuth>
-            <Prefetch>
-              <Outlet />
-            </Prefetch>
-          </RequireAuth>
+          <PersistLogin>
+            <RequireAuth>
+              <Prefetch>
+                <Outlet />
+              </Prefetch>
+            </RequireAuth>
+          </PersistLogin>
         ),
         children: [
           { index: true, element: <WelcomePage /> },
